@@ -220,8 +220,10 @@ Meteor.methods
 
   "ts-submit-exitdata": (doc, panel) ->
     userId = Meteor.userId()
+    # console.log "I am 1"
     throw new Meteor.Error(403, ErrMsg.authErr) unless userId
 
+    # console.log "I am 2"
     # TODO what if this doesn't exist?
     asst = TurkServer.Assignment.currentAssignment()
     # mark assignment as completed and save the data
@@ -238,7 +240,7 @@ Meteor.methods
           updated: new Date
         }
       }
-
+    # console.log "I am 3"
     # Destroy the token for this connection, so that a resume login will not
     # be used for future HITs. Returning true should cause the HIT to submit on
     # the client side, but if that doesn't work, the user will be logged out.
@@ -247,6 +249,7 @@ Meteor.methods
       # in the same way that Accounts._expireTokens effects cleanup.
       Accounts.destroyToken(userId, token)
 
+    console.log "I am 4"
     # return true to auto submit the HIT
     return true
 

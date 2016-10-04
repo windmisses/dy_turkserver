@@ -27,12 +27,24 @@ Template.tsTimeOptions.helpers
   Submits the exit survey data to the server and submits the HIT if successful
 ###
 TurkServer.submitExitSurvey = (results, panel) ->
+  # console.log "I am here!"
+  # console.log results
+  # console.log panel
+
   Meteor.call "ts-submit-exitdata", results, panel, (err, res) ->
+    # console.log "I am here la!"
+
     bootbox.alert(err) if err
 
-    if res
-      TurkServer.submitHIT()
+    # console.log "submit exit!"
+    # console.log err
+    # console.log res
+
+    # if res
+      # TurkServer.submitHIT()
       # TODO: log the user out here? Maybe doesn't matter because resume login will be disabled
+  console.log "submit!!!"
+  TurkServer.submitHIT()
 
 TurkServer.submitHIT = -> Blaze.render(Template.mturkSubmit, document.body)
 
